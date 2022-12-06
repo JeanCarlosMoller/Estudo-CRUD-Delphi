@@ -1,0 +1,20 @@
+object dmMoller: TdmMoller
+  OldCreateOrder = False
+  Height = 438
+  Width = 456
+  object cnxBancoDeDados: TFDConnection
+    AfterConnect = cnxBancoDeDadosAfterConnect
+    BeforeConnect = cnxBancoDeDadosBeforeConnect
+    Left = 80
+    Top = 96
+  end
+  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
+    Left = 80
+    Top = 160
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 80
+    Top = 224
+  end
+end

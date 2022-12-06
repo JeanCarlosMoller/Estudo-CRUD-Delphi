@@ -1,0 +1,19 @@
+program JCMöller;
+
+uses
+  Vcl.Forms,
+  UfrmLogin in '..\codigo\formulario\UfrmLogin.pas' {Form1},
+  UusuarioDao in '..\codigo\dao\UusuarioDao.pas',
+  Uusuario in '..\codigo\modelos\Uusuario.pas',
+  udmMoller in '..\database\udmMoller.pas' {dmMoller: TDataModule},
+  UresourceUtils in '..\codigo\Utils\UresourceUtils.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TdmMoller, dmMoller);
+  Application.Run;
+end.

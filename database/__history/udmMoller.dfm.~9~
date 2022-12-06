@@ -1,0 +1,25 @@
+object dmMoller: TdmMoller
+  OldCreateOrder = False
+  Height = 438
+  Width = 456
+  object cnxBancoDeDados: TFDConnection
+    Params.Strings = (
+      'Port='
+      'DriverID=MySQL')
+    AfterConnect = cnxBancoDeDadosAfterConnect
+    BeforeConnect = cnxBancoDeDadosBeforeConnect
+    Left = 80
+    Top = 96
+  end
+  object drvBancoDeDados: TFDPhysMySQLDriverLink
+    VendorLib = 'C:\GIT\M'#246'ller-Estudos-Delphi\bibliotecas\libmysql.dll'
+    Left = 80
+    Top = 160
+  end
+  object wtcBancoDeDados: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    OnHide = wtcBancoDeDadosHide
+    Left = 80
+    Top = 224
+  end
+end

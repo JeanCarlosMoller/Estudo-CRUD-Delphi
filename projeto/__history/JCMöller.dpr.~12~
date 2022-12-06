@@ -1,0 +1,24 @@
+program JCMöller;
+
+uses
+  Vcl.Forms,
+  UfrmLogin in '..\codigo\formulario\UfrmLogin.pas' {frmLogin},
+  UusuarioDao in '..\codigo\dao\UusuarioDao.pas',
+  Uusuario in '..\codigo\modelos\Uusuario.pas',
+  udmMoller in '..\database\udmMoller.pas' {dmMoller: TDataModule},
+  UresourceUtils in '..\codigo\Utils\UresourceUtils.pas',
+  UfrmSplash in '..\codigo\formulario\UfrmSplash.pas' {frmSplash},
+  UiniUtils in '..\codigo\Utils\UiniUtils.pas',
+  UfrmPainelGestao in '..\codigo\formulario\UfrmPainelGestao.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmSplash, frmSplash);
+  Application.CreateForm(TdmSistema_Moller, dmSistema_Moller);
+  Application.CreateForm(TfrmSplash, frmSplash);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.
