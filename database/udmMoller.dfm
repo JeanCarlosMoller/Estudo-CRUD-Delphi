@@ -12,7 +12,7 @@ object dmMoller: TdmMoller
     Top = 96
   end
   object drvBancoDeDados: TFDPhysMySQLDriverLink
-    VendorLib = 'C:\GIT\M'#246'ller-Estudos-Delphi\bibliotecas\libmysql.dll'
+    VendorLib = 'C:\GIT\Estudo-CRUD-Delphi\bibliotecas\libmysql.dll'
     Left = 80
     Top = 160
   end

@@ -17,6 +17,9 @@ type
   public
     function BuscarUsuarioPorLoginSenha(PLogin: String; PSenha: String)
       : TUsuario;
+
+    function BuscarUsuarioCredencial(PLogin: String) : TUsuario;
+
     function BuscarTodosUsuarios(): TList<TUsuario>;
     procedure InserirUsuario(PUsuario: TUsuario);
   end;
@@ -66,6 +69,40 @@ begin
   FreeAndNil(LQuery);
 end;
 
+
+function TUsuarioDAO.BuscarUsuarioCredencial(PLogin: String): TUsuario;
+var
+  LQuery: TFDQuery;
+  LUsuario: TUsuario;
+
+begin
+  LQuery := TFDQuery.Create(nil);
+  LQuery.Connection := dmSistema_Moller.cnxBancoDeDados;
+
+  LQuery.SQL.Text := 'SELECT * FROM usuario ' +
+    ' WHERE login = :login';
+
+  LQuery.ParamByName('login').AsString := PLogin;
+  LQuery.Open();
+
+  LUsuario := nil;
+
+  if not LQuery.IsEmpty then
+  begin
+    LUsuario := TUsuario.Create;
+    LUsuario.id := LQuery.FieldByName('id').AsInteger;
+    LUsuario.login := LQuery.FieldByName('login').AsString;
+    LUsuario.senha := LQuery.FieldByName('senha').AsString;
+    LUsuario.criadoEm := LQuery.FieldByName('criadoEm').AsDateTime;
+    LUsuario.criadoPor := LQuery.FieldByName('criadoPor').AsString;
+    LUsuario.alteradoEm := LQuery.FieldByName('alteradoEm').AsDateTime;
+    LUsuario.alteradoPor := LQuery.FieldByName('alteradoPor').AsString;
+  end;
+
+  LQuery.Close();
+  FreeAndNil(LQuery);
+  Result := LUsuario;
+end;
 
 function TUsuarioDAO.BuscarUsuarioPorLoginSenha(PLogin, PSenha: String)
   : TUsuario;

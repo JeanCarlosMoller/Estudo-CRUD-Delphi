@@ -5,20 +5,22 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.jpeg, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Imaging.pngimage;
+  Vcl.Imaging.pngimage, Vcl.DBCtrls;
 
 type
   TfrmLogin = class(TForm)
-    Panel_Principal: TPanel;
-    Img_FundoTelaPrincipal: TImage;
     edt_usuario: TEdit;
     edt_senha: TEdit;
-    Panel1: TPanel;
-    Image1: TImage;
     btn_login: TButton;
-    Button1: TButton;
+    Panel1: TPanel;
+    btn_criarConta: TButton;
+    lbl_esqueceuSenha: TLabel;
+    Panel2: TPanel;
+    Image1: TImage;
     procedure btn_loginClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure lbl_esqueceuSenhaClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -104,5 +106,67 @@ begin
   FreeAndNil(LUsuario);
 
 end;
+
+procedure TfrmLogin.FormCreate(Sender: TObject);
+begin
+  lbl_esqueceuSenha.font.Color := clblue;
+end;
+
+procedure TfrmLogin.lbl_esqueceuSenhaClick(Sender: TObject);
+
+var
+  LDao: TUsuarioDao;
+  LUsuario: TUsuario;
+
+  LLogin: String;
+
+  InputString: string;
+
+begin
+  InputString:= InputBox('Autenticação de usuário', 'Informe seu código: ', '');
+
+
+begin
+
+  LDao := TUsuarioDao.Create;
+
+  LLogin := InputString;
+
+  LUsuario := LDao.BuscarUsuarioCredencial(LLogin);
+
+  if Assigned(LUsuario) then
+  begin
+    // REGISTRAR DATA E HORA LOGIN
+    TIniUtils.gravarPropriedade(TSECAO.INFORMACOES_GERAIS,
+      TPROPRIEDADE.DATAHORA_ULTIMO_LOGIN, DateTimeToStr(Now));
+
+    // Cpmseguiu Logar
+    TIniUtils.gravarPropriedade(TSECAO.INFORMACOES_GERAIS, TPROPRIEDADE.LOGADO,
+      TIniUtils.VALOR_VERDADEIRO);
+
+    if not Assigned(frmPainelGestao) then
+    begin
+      Application.CreateForm(TfrmPainelGestao, frmPainelGestao);
+    end;
+
+    TFormUtils.SetarFormularioPrincipal(frmPainelGestao);
+    frmPainelGestao.Show();
+
+    FreeAndNil(LDao);
+    FreeAndNil(LUsuario);
+
+    Close();
+  end
+  else
+  begin
+    FreeAndNil(LDao);
+    ShowMessage('Credencial invalida');
+  end;
+  FreeAndNil(LDao);
+
+end;
+
+  end;
+
 
 end.
