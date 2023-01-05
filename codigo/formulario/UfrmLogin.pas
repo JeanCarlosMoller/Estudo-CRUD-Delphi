@@ -17,10 +17,12 @@ type
     lbl_esqueceuSenha: TLabel;
     Panel2: TPanel;
     Image1: TImage;
+    Image2: TImage;
     procedure btn_loginClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+
     procedure FormCreate(Sender: TObject);
     procedure lbl_esqueceuSenhaClick(Sender: TObject);
+    procedure btn_criarContaClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -36,6 +38,36 @@ implementation
 {$R *.dfm}
 
 uses Uusuario, UiniUtils, UusuarioDao, UfrmPainelGestao, UformUtils;
+
+procedure TfrmLogin.btn_criarContaClick(Sender: TObject);
+var
+  LUsuario: TUsuario;
+  LDao: TUsuarioDao;
+
+  InputLogin, InputSenha : String;
+
+begin
+
+  InputLogin:= InputBox('New User - Login', 'Informe seu login: ', '');
+  InputSenha:= InputBox('New User - Senha', 'Informe sua senha: ', '');
+
+  LUsuario := TUsuario.Create();
+  LUsuario.login := InputLogin;
+  LUsuario.senha := InputSenha;
+  LUsuario.pessoaId := 1;
+  LUsuario.criadoEm := Now();
+  LUsuario.criadoPor := 'Adm';
+  LUsuario.alteradoEm := Now();
+  LUsuario.alteradoPor := 'Adm';
+
+  LDao := TUsuarioDao.Create();
+  LDao.InserirUsuario(LUsuario);
+
+  FreeAndNil(LDao);
+  FreeAndNil(LUsuario);
+
+end;
+
 
 procedure TfrmLogin.btn_loginClick(Sender: TObject);
 var
@@ -84,28 +116,6 @@ begin
   FreeAndNil(LDao);
 end;
 
-
-procedure TfrmLogin.Button1Click(Sender: TObject);
-var
-  LUsuario: TUsuario;
-  LDao: TUsuarioDao;
-begin
-  LUsuario := TUsuario.Create();
-  LUsuario.login := 'teste';
-  LUsuario.senha := '123';
-  LUsuario.pessoaId := 1;
-  LUsuario.criadoEm := Now();
-  LUsuario.criadoPor := 'marcio';
-  LUsuario.alteradoEm := Now();
-  LUsuario.alteradoPor := 'marcio';
-
-  LDao := TUsuarioDao.Create();
-  LDao.InserirUsuario(LUsuario);
-
-  FreeAndNil(LDao);
-  FreeAndNil(LUsuario);
-
-end;
 
 procedure TfrmLogin.FormCreate(Sender: TObject);
 begin
