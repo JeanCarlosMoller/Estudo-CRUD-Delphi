@@ -19,7 +19,8 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmSplash, frmSplash);
   Application.CreateForm(TdmMoller, dmSistema_Moller);
-  Application.CreateForm(TfrmSplash, frmSplash);
   Application.CreateForm(TfrmPainelGestao, frmPainelGestao);
+  Application.CreateForm(TfrmLogin, frmLogin);
+
   Application.Run;
 end.

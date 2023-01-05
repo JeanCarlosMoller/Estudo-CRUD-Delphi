@@ -3,8 +3,10 @@ unit UfrmLogin;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.jpeg, Vcl.StdCtrls, Vcl.Buttons,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.jpeg,
+  Vcl.StdCtrls, Vcl.Buttons,
   Vcl.Imaging.pngimage, Vcl.DBCtrls;
 
 type
@@ -44,12 +46,12 @@ var
   LUsuario: TUsuario;
   LDao: TUsuarioDao;
 
-  InputLogin, InputSenha : String;
+  InputLogin, InputSenha: String;
 
 begin
 
-  InputLogin:= InputBox('New User - Login', 'Informe seu login: ', '');
-  InputSenha:= InputBox('New User - Senha', 'Informe sua senha: ', '');
+  InputLogin := InputBox('New User - Login', 'Informe seu login: ', '');
+  InputSenha := InputBox('New User - Senha', 'Informe sua senha: ', '');
 
   LUsuario := TUsuario.Create();
   LUsuario.login := InputLogin;
@@ -67,7 +69,6 @@ begin
   FreeAndNil(LUsuario);
 
 end;
-
 
 procedure TfrmLogin.btn_loginClick(Sender: TObject);
 var
@@ -116,7 +117,6 @@ begin
   FreeAndNil(LDao);
 end;
 
-
 procedure TfrmLogin.FormCreate(Sender: TObject);
 begin
   lbl_esqueceuSenha.font.Color := clblue;
@@ -133,50 +133,49 @@ var
   InputString: string;
 
 begin
-  InputString:= InputBox('Autenticação de usuário', 'Informe seu código: ', '');
+  InputString := InputBox('Autenticação de usuário',
+    'Informe seu código: ', '');
 
-
-begin
-
-  LDao := TUsuarioDao.Create;
-
-  LLogin := InputString;
-
-  LUsuario := LDao.BuscarUsuarioCredencial(LLogin);
-
-  if Assigned(LUsuario) then
   begin
-    // REGISTRAR DATA E HORA LOGIN
-    TIniUtils.gravarPropriedade(TSECAO.INFORMACOES_GERAIS,
-      TPROPRIEDADE.DATAHORA_ULTIMO_LOGIN, DateTimeToStr(Now));
 
-    // Cpmseguiu Logar
-    TIniUtils.gravarPropriedade(TSECAO.INFORMACOES_GERAIS, TPROPRIEDADE.LOGADO,
-      TIniUtils.VALOR_VERDADEIRO);
+    LDao := TUsuarioDao.Create;
 
-    if not Assigned(frmPainelGestao) then
+    LLogin := InputString;
+
+    LUsuario := LDao.BuscarUsuarioCredencial(LLogin);
+
+    if Assigned(LUsuario) then
     begin
-      Application.CreateForm(TfrmPainelGestao, frmPainelGestao);
+      // REGISTRAR DATA E HORA LOGIN
+      TIniUtils.gravarPropriedade(TSECAO.INFORMACOES_GERAIS,
+        TPROPRIEDADE.DATAHORA_ULTIMO_LOGIN, DateTimeToStr(Now));
+
+      // Cpmseguiu Logar
+      TIniUtils.gravarPropriedade(TSECAO.INFORMACOES_GERAIS,
+        TPROPRIEDADE.LOGADO, TIniUtils.VALOR_VERDADEIRO);
+
+      if not Assigned(frmPainelGestao) then
+      begin
+        Application.CreateForm(TfrmPainelGestao, frmPainelGestao);
+      end;
+
+      TFormUtils.SetarFormularioPrincipal(frmPainelGestao);
+      frmPainelGestao.Show();
+
+      FreeAndNil(LDao);
+      FreeAndNil(LUsuario);
+
+      Close();
+    end
+    else
+    begin
+      FreeAndNil(LDao);
+      ShowMessage('Credencial invalida');
     end;
-
-    TFormUtils.SetarFormularioPrincipal(frmPainelGestao);
-    frmPainelGestao.Show();
-
     FreeAndNil(LDao);
-    FreeAndNil(LUsuario);
 
-    Close();
-  end
-  else
-  begin
-    FreeAndNil(LDao);
-    ShowMessage('Credencial invalida');
   end;
-  FreeAndNil(LDao);
 
 end;
-
-  end;
-
 
 end.
