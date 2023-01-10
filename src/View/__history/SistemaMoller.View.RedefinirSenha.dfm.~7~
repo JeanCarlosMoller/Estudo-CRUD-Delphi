@@ -1,0 +1,113 @@
+object frmRedefinirSenha: TfrmRedefinirSenha
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Redefini'#231#227'o de senha'
+  ClientHeight = 244
+  ClientWidth = 407
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 19
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 407
+    Height = 89
+    Align = alTop
+    BevelOuter = bvNone
+    Padding.Top = 30
+    TabOrder = 0
+    object lblRdefinicaoSenha: TLabel
+      Left = 0
+      Top = 30
+      Width = 407
+      Height = 30
+      Align = alTop
+      Alignment = taCenter
+      Caption = 'Redefini'#231#227'o de Senha'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clDefault
+      Font.Height = -21
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      ExplicitWidth = 211
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 89
+    Width = 407
+    Height = 155
+    Align = alClient
+    BevelOuter = bvNone
+    Padding.Left = 60
+    Padding.Right = 60
+    TabOrder = 1
+    object Panel5: TPanel
+      Left = 60
+      Top = 114
+      Width = 287
+      Height = 41
+      Align = alBottom
+      BevelOuter = bvNone
+      TabOrder = 0
+      object btnConfirmar: TButton
+        Left = 151
+        Top = 0
+        Width = 136
+        Height = 41
+        Align = alRight
+        Caption = 'Confirmar'
+        TabOrder = 0
+        OnClick = btnConfirmarClick
+      end
+      object btnCancelar: TButton
+        Left = 0
+        Top = 0
+        Width = 136
+        Height = 41
+        Align = alLeft
+        Caption = 'Cancelar'
+        TabOrder = 1
+        OnClick = btnCancelarClick
+      end
+    end
+    object Panel3: TPanel
+      Left = 60
+      Top = 0
+      Width = 287
+      Height = 80
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 1
+      object edtSenha: TEdit
+        Left = 0
+        Top = 0
+        Width = 287
+        Height = 27
+        Align = alTop
+        PasswordChar = '*'
+        TabOrder = 0
+        TextHint = 'Senha'
+      end
+      object edtConfirmarSenha: TEdit
+        Left = 0
+        Top = 53
+        Width = 287
+        Height = 27
+        Align = alBottom
+        PasswordChar = '*'
+        TabOrder = 1
+        TextHint = 'Confirma'#231#227'o de senha'
+      end
+    end
+  end
+end

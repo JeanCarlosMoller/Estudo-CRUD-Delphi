@@ -1,0 +1,128 @@
+object frmRedefinirSenha: TfrmRedefinirSenha
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Redefini'#231#227'o de senha'
+  ClientHeight = 244
+  ClientWidth = 407
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 19
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 407
+    Height = 89
+    Align = alTop
+    BevelOuter = bvNone
+    Padding.Top = 30
+    TabOrder = 0
+    ExplicitWidth = 531
+    object lblNomeAplicacao: TLabel
+      Left = 0
+      Top = 30
+      Width = 407
+      Height = 30
+      Align = alTop
+      Alignment = taCenter
+      Caption = 'Redefini'#231#227'o de Senha'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clDefault
+      Font.Height = -21
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      ExplicitWidth = 211
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 89
+    Width = 407
+    Height = 155
+    Align = alClient
+    BevelOuter = bvNone
+    Padding.Left = 60
+    Padding.Right = 60
+    TabOrder = 1
+    ExplicitTop = 95
+    object Panel3: TPanel
+      Left = 60
+      Top = 0
+      Width = 287
+      Height = 80
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 0
+      ExplicitWidth = 411
+      object edtSenha: TEdit
+        Left = 0
+        Top = 0
+        Width = 287
+        Height = 27
+        Align = alTop
+        PasswordChar = '*'
+        TabOrder = 0
+        TextHint = 'Senha'
+        ExplicitLeft = 16
+        ExplicitTop = -8
+        ExplicitWidth = 411
+      end
+      object edtConfirmarSenha: TEdit
+        Left = 0
+        Top = 53
+        Width = 287
+        Height = 27
+        Align = alBottom
+        PasswordChar = '*'
+        TabOrder = 1
+        TextHint = 'Confirma'#231#227'o de senha'
+        ExplicitTop = 33
+        ExplicitWidth = 353
+      end
+    end
+    object Panel5: TPanel
+      Left = 60
+      Top = 114
+      Width = 287
+      Height = 41
+      Align = alBottom
+      BevelOuter = bvNone
+      TabOrder = 1
+      ExplicitTop = 80
+      ExplicitWidth = 353
+      object btnEConfirmar: TButton
+        Left = 151
+        Top = 0
+        Width = 136
+        Height = 41
+        Align = alRight
+        Caption = 'Confirmar'
+        TabOrder = 0
+        OnClick = btnEConfirmarClick
+        ExplicitLeft = 217
+        ExplicitTop = 16
+        ExplicitHeight = 48
+      end
+      object Button1: TButton
+        Left = 0
+        Top = 0
+        Width = 136
+        Height = 41
+        Align = alLeft
+        Caption = 'Cancelar'
+        TabOrder = 1
+        OnClick = Button1Click
+        ExplicitHeight = 48
+      end
+    end
+  end
+end

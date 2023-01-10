@@ -1,0 +1,187 @@
+inherited frmUsuarios: TfrmUsuarios
+  Caption = 'Cadastro de Usu'#225'rios'
+  ClientHeight = 290
+  ClientWidth = 598
+  ExplicitWidth = 604
+  ExplicitHeight = 319
+  PixelsPerInch = 96
+  TextHeight = 19
+  inherited PnlPrincipal: TCardPanel
+    Width = 598
+    Height = 290
+    ActiveCard = cardCadastro
+    ExplicitLeft = -8
+    ExplicitTop = 8
+    ExplicitWidth = 704
+    ExplicitHeight = 290
+    inherited cardCadastro: TCard
+      Width = 596
+      Height = 288
+      ExplicitLeft = 2
+      ExplicitWidth = 596
+      ExplicitHeight = 288
+      object lblNome: TLabel [0]
+        Left = 63
+        Top = 40
+        Width = 7
+        Height = 25
+        Alignment = taCenter
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -21
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblLogin: TLabel [1]
+        Left = 63
+        Top = 69
+        Width = 7
+        Height = 25
+        Alignment = taCenter
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -21
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblSenha: TLabel [2]
+        Left = 63
+        Top = 102
+        Width = 7
+        Height = 25
+        Alignment = taCenter
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -21
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      inherited pnlCadastroBotoes: TPanel
+        Top = 257
+        Width = 596
+        Height = 31
+        ExplicitTop = 280
+        ExplicitWidth = 661
+        ExplicitHeight = 31
+        inherited bntCancelar: TButton
+          Left = 504
+          Height = 31
+          Images = nil
+        end
+        inherited btnSalvar: TButton
+          Left = 412
+          Height = 31
+          Images = nil
+          OnClick = btnSalvarClick
+          ExplicitLeft = 406
+          ExplicitHeight = 31
+        end
+      end
+      object edtNome: TEdit
+        Left = 88
+        Top = 32
+        Width = 361
+        Height = 27
+        Color = clWhite
+        TabOrder = 1
+        TextHint = 'Nome'
+      end
+      object edtLogin: TEdit
+        Left = 88
+        Top = 65
+        Width = 361
+        Height = 27
+        TabOrder = 2
+        TextHint = 'Login'
+      end
+      object ToggleStatus: TToggleSwitch
+        Left = 88
+        Top = 168
+        Width = 130
+        Height = 21
+        StateCaptions.CaptionOn = 'Ativo'
+        StateCaptions.CaptionOff = 'Bloqueado'
+        TabOrder = 3
+      end
+      object edtSenha: TEdit
+        Left = 88
+        Top = 100
+        Width = 361
+        Height = 27
+        TabOrder = 4
+        TextHint = 'Senha'
+      end
+    end
+    inherited cardPesquisa: TCard
+      Width = 596
+      Height = 288
+      inherited pnlPesquisa: TPanel
+        Width = 596
+        inherited btnPesquisar: TButton
+          OnClick = btnPesquisarClick
+        end
+      end
+      inherited pnlPesquisarBotoes: TPanel
+        Top = 257
+        Width = 596
+        inherited btnFechar: TButton
+          Left = 504
+        end
+        inherited btnExcluir: TButton
+          OnClick = btnExcluirClick
+        end
+      end
+      inherited pnlGrid: TPanel
+        Width = 596
+        Height = 208
+        inherited DBGrid1: TDBGrid
+          Width = 596
+          Height = 208
+          DataSource = DataSource1
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'nome'
+              Title.Caption = 'Nome'
+              Width = 275
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'login'
+              Title.Caption = 'Login'
+              Width = 315
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'status'
+              Title.Caption = 'Status'
+              Width = 51
+              Visible = True
+            end>
+        end
+      end
+    end
+  end
+  inherited ImageList1: TImageList
+    Left = 513
+    Top = 74
+  end
+  inherited DataSource1: TDataSource
+    DataSet = dmUsuarios.cdsUsuarios
+    Left = 513
+    Top = 124
+  end
+  object PopupMenu: TPopupMenu
+    Left = 520
+    Top = 179
+    object mnuRedefinirSenha: TMenuItem
+      Caption = 'Redefinir Senha'
+      OnClick = mnuRedefinirSenhaClick
+    end
+  end
+end
